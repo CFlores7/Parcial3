@@ -1,0 +1,64 @@
+<% include partials/_header %>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/add" method="POST">
+                            <div class="form-group">
+                                <p>Nombre:</p>
+                                <input type="text" name="nombre" placeholder="Ingrese el nombre de la radio" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <p>Eslogan:</p>
+                                <textarea name="eslogan" cols="80" class="form-control" placeholder="Ingrese el eslogan"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <p>Canal:</p>
+                                <input type="text" name="canal" placeholder="Ingrese el canal de la radio" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <p>Modular:</p>
+                                <input type="radio" name="modular" value="AM"> AM
+                                <input type="radio" name="modular" value="FM"> FM
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Agregar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <table class="table table-bordered table-hover" bgcolor="#FFFFFF">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Nombre</th>
+                            <th>Eslogan</th>
+                            <th>Canal</th>
+                            <th>AM/FM</th>
+                            <th>Controller</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i = 0; i < radios.length; i++) { %>
+                            <tr>
+                                <td><%= i + 1%></td>
+                                <td><%= radios[i].nombre%></td>
+                                <td><%= radios[i].eslogan%></td>
+                                <td><%= radios[i].canal%></td>
+                                <td><%= radios[i].modular%></td>
+                                <td>
+                                    <a href="/update/<%= radios[i]._id%>" class="btn btn-info">Actualizar</a>
+                                    <a href="/delete/<%= radios[i]._id%>" class="btn btn-danger">Eliminar</a>
+
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<% include partials/_footer %>
